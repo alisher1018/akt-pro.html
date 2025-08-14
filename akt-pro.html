@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKT - Alisher Kompyuter Ta'limi Dasturi</title>
+    <style>
+        /* Umumiy stil */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Kurslar */
+        .courses {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .course-card:hover .course-img img {
+            transform: scale(1.1);
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .course-content p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        /* Testlar */
+        .quiz-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .quiz-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-header h2 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .quiz-progress {
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .quiz-progress-bar {
+            height: 100%;
+            background-color: var(--secondary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+        }
+        
+        .question h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .option {
+            background-color: var(--light-color);
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #ddd;
+        }
+        
+        .option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .option.correct {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .quiz-result {
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-result h2 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .quiz-result p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        /* Statistikalar */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark-color), #1a1a2e);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-item h3 {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .stat-item p {
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalopen 0.5s;
+        }
+        
+        @keyframes modalopen {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">AKT<span>Pro</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Bosh sahifa</a></li>
+                    <li><a href="#courses">Kurslar</a></li>
+                    <li><a href="#quiz">Testlar</a></li>
+                    <li><a href="#stats">Statistika</a></li>
+                    <li><a href="#" id="contact-btn">Aloqa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Alisher Kompyuter Ta'limi Dasturi</h1>
+            <p>O'zbekiston aholisining raqamli savodxonligini oshirishga qaratilgan keng qamrovli dastur. Har qanday darajadagi bilimga ega bo'lganlar uchun moslashtirilgan online kurslar.</p>
+            <a href="#courses" class="btn btn-primary">Kurslarni ko'rish</a>
+            <a href="#quiz" class="btn btn-secondary">Bilimni sinab ko'rish</a>
+        </div>
+    </section>
+
+    <!-- Kurslar -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bizning Kurslar</h2>
+                <p>Har qanday darajadagi bilimga ega bo'lganlar uchun moslashtirilgan kurslarimiz</p>
+            </div>
+            <div class="course-grid">
+                <!-- Kurs 1 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Kompyuter asoslari">
+                    </div>
+                    <div class="course-content">
+                        <h3>Kompyuter Asoslari</h3>
+                        <p>Kompyuter bilan ishlashning asosiy ko'nikmalarini o'rganing. Operatsion tizimlar, fayllar bilan ishlash va internetdan foydalanish.</p>
+                        <div class="course-meta">
+                            <span>Boshlang'ich</span>
+                            <span>12 dars</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurs 2 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ofis dasturlari">
+                    </div>
+                    <div class="course-content">
+                        <h3>Ofis Dasturlari</h3>
+                        <p>Microsoft Office (Word, Excel, PowerPoint) va ularning bepul alternativalari bilan ishlashni o'rganing.</p>
+                        <div class="course-meta">
+                            <span>O'rta</span>
+                            <span>18 dars</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurs 3 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Internet va xavfsizlik">
+                    </div>
+                    <div class="course-content">
+                        <h3>Internet va Xavfsizlik</h3>
+                        <p>Internetdan samarali va xavfsiz foydalanish, shaxsiy ma'lumotlarni himoya qilish va firibgarlikdan saqlanish.</p>
+                        <div class="course-meta">
+                            <span>Boshlang'ich</span>
+                            <span>10 dars</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurs 4 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Raqamli mahorat">
+                    </div>
+                    <div class="course-content">
+                        <h3>Raqamli Mahorat</h3>
+                        <p>Zamonaviy raqamli ko'nikmalar: bulutli texnologiyalar, onlayn hamkorlik, raqamli hujjatlar bilan ishlash.</p>
+                        <div class="course-meta">
+                            <span>O'rta</span>
+                            <span>15 dars</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurs 5 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Mobil qurilmalar">
+                    </div>
+                    <div class="course-content">
+                        <h3>Mobil Qurilmalar</h3>
+                        <p>Smartfonlar va planshetlar bilan ishlash, foydali mobil ilovalar va ularni ishlatish usullari.</p>
+                        <div class="course-meta">
+                            <span>Boshlang'ich</span>
+                            <span>8 dars</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurs 6 -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Elektron hukumat">
+                    </div>
+                    <div class="course-content">
+                        <h3>Elektron Hukumat Xizmatlari</h3>
+                        <p>MY.GOV.UZ va boshqa elektron hukumat platformalari orqali davlat xizmatlaridan foydalanish.</p>
+                        <div class="course-meta">
+                            <span>O'rta</span>
+                            <span>12 dars</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testlar -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bilimingizni Sinab Ko'ring</h2>
+                <p>Quyidagi test orqali kompyuter savodxonligingiz darajasini aniqlang</p>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2>Kompyuter Savodxonligi Testi</h2>
+                    <p id="question-counter">Savol 1/10</p>
+                </div>
+                
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="quiz-progress"></div>
+                </div>
+                
+                <div id="quiz-content">
+                    <div class="question">
+                        <h3 id="question-text">Kompyuterning asosiy qismlari qaysilar?</h3>
+                    </div>
+                    
+                    <div class="options" id="options-container">
+                        <!-- JavaScript orqali yuklanadi -->
+                    </div>
+                    
+                    <div class="quiz-footer">
+                        <button class="btn" id="prev-btn" disabled>Oldingi</button>
+                        <button class="btn btn-primary" id="next-btn">Keyingi</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-result" id="quiz-result">
+                    <h2>Test Yakunlandi!</h2>
+                    <p id="result-text">Siz 10 savoldan 8 tasiga to'g'ri javob berdingiz. Kompyuter savodxonligingiz yaxshi darajada.</p>
+                    <button class="btn btn-primary" id="restart-btn">Qayta Boshlash</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistika -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bizning Yutuqlar</h2>
+                <p>AKT dasturi orqali erishilgan natijalar</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 id="students-count">0</h3>
+                    <p>O'quvchi</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3 id="courses-count">0</h3>
+                    <p>Kurslar</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3 id="regions-count">0</h3>
+                    <p>Viloyatlar</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3 id="success-rate">0</h3>
+                    <p>Muvaffaqiyat darajasi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AKTPro</h3>
+                    <p>Aholi kompyuter savodxonligini oshirishga qaratilgan milliy dastur.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tez Havolalar</h3>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#courses">Kurslar</a></li>
+                        <li><a href="#quiz">Testlar</a></li>
+                        <li><a href="#stats">Statistika</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kurslar</h3>
+                    <ul>
+                        <li><a href="#">Kompyuter asoslari</a></li>
+                        <li><a href="#">Ofis dasturlari</a></li>
+                        <li><a href="#">Internet va xavfsizlik</a></li>
+                        <li><a href="#">Elektron hukumat</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Aloqa</h3>
+                    <ul>
+                        
+                        <li>ibudullayevalisher949@gmail.com</li>
+                        <li>+998 93 291 48 01</li>
+                        <li>Surxandaryo Viloyati, Muzrabot tumani</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AKTPro. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Aloqa Modali -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Biz bilan bog'laning</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Ismingiz</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Elektron pochta</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Mavzu</label>
+                    <input type="text" id="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Xabar</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Yuborish</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Test savollari
+        const quizQuestions = [
+            {
+                question: "Kompyuterning asosiy qismlari qaysilar?",
+                options: [
+                    "Monitor, printer, skaner",
+                    "Protsessor, xotira, qattiq disk",
+                    "Klaviatura, sichqoncha, kolonkalar",
+                    "Router, modem, USB fleshka"
+                ],
+                answer: 1
+            },
+            {
+                question: "Quyidagilardan qaysi biri operatsion tizim emas?",
+                options: [
+                    "Windows",
+                    "Linux",
+                    "MacOS",
+                    "Microsoft Word"
+                ],
+                answer: 3
+            },
+            {
+                question: "Elektron pochta manzilida @ belgisidan keyin qanday ma'lumot keladi?",
+                options: [
+                    "Foydalanuvchi nomi",
+                    "Xabar mavzusi",
+                    "Pochta serveri nomi",
+                    "Xabar matni"
+                ],
+                answer: 2
+            },
+            {
+                question: "Excel dasturi nima uchun ishlatiladi?",
+                options: [
+                    "Matnli hujjatlar yaratish uchun",
+                    "Hisoblash va jadvallar bilan ishlash uchun",
+                    "Taqdimotlar tayyorlash uchun",
+                    "Internetda saytlarni ko'rish uchun"
+                ],
+                answer: 1
+            },
+            {
+                question: "Quyidagilardan qaysi biri parolni mustahkamlash usuli hisoblanmaydi?",
+                options: [
+                    "Katta va kichik harflardan foydalanish",
+                    "Raqam va belgilarni qo'shish",
+                    "Oddiy va esda qolarli so'zlardan foydalanish",
+                    "Uzun parol yaratish"
+                ],
+                answer: 2
+            },
+            {
+                question: "PDF fayl nima?",
+                options: [
+                    "Matnli hujjat formati",
+                    "Rasm formati",
+                    "Musiqa fayli formati",
+                    "Video fayl formati"
+                ],
+                answer: 0
+            },
+            {
+                question: "MY.GOV.UZ platformasi nima uchun mo'ljallangan?",
+                options: [
+                    "Onlayn o'yinlar o'ynash uchun",
+                    "Davlat xizmatlarini onlayn olish uchun",
+                    "Musiqa tinglash uchun",
+                    "Video muloqot uchun"
+                ],
+                answer: 1
+            },
+            {
+                question: "USB fleshka nima uchun ishlatiladi?",
+                options: [
+                    "Ma'lumotlarni bir kompyuterdan ikkinchisiga ko'chirish uchun",
+                    "Internetga ulanish uchun",
+                    "Ovoz chiqarish uchun",
+                    "Kompyuterni sovutish uchun"
+                ],
+                answer: 0
+            },
+            {
+                question: "Quyidagilardan qaysi biri virusdan himoya vositalariga kiradi?",
+                options: [
+                    "Antivirus dasturi",
+                    "Video pleer",
+                    "Matn muharriri",
+                    "Grafik muharrir"
+                ],
+                answer: 0
+            },
+            {
+                question: "Kompyuterdan foydalanganda ko'zni charchashdan qanday himoya qilish mumkin?",
+                options: [
+                    "Har 20 daqiqada 20 soniya uzoqqa qarash",
+                    "Ekran yorqinligini maksimal darajada oshirish",
+                    "Ekrandan bir metr yaqinroq o'tirish",
+                    "Qorong'u xonada ishlash"
+                ],
+                answer: 0
+            }
+        ];
+
+        // DOM elementlari
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const quizContent = document.getElementById('quiz-content');
+        const quizResult = document.getElementById('quiz-result');
+        const resultText = document.getElementById('result-text');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionCounter = document.getElementById('question-counter');
+        const quizProgress = document.getElementById('quiz-progress');
+        
+        // Test holati
+        let currentQuestion = 0;
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let quizCompleted = false;
+        
+        // Testni boshlash
+        function startQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            quizCompleted = false;
+            quizContent.style.display = 'block';
+            quizResult.style.display = 'none';
+            loadQuestion();
+        }
+        
+        // Savolni yuklash
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestion];
+            questionText.textContent = question.question;
+            
+            // Variantlarni yuklash
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Tugmalarni yangilash
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === quizQuestions.length - 1 ? 'Yakunlash' : 'Keyingi';
+            
+            // Progressni yangilash
+            questionCounter.textContent = `Savol ${currentQuestion + 1}/${quizQuestions.length}`;
+            quizProgress.style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+        }
+        
+        // Variantni tanlash
+        function selectOption(index) {
+            // Barcha variantlardan selected klassini olib tashlash
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Tanlangan variantga selected klassini qo'shish
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            userAnswers[currentQuestion] = index;
+        }
+        
+        // Oldingi savolga o'tish
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Keyingi savolga o'tish yoki testni yakunlash
+        function nextQuestion() {
+            if (userAnswers[currentQuestion] === null && !quizCompleted) {
+                alert('Iltimos, javobni tanlang!');
+                return;
+            }
+            
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                completeQuiz();
+            }
+        }
+        
+        // Testni yakunlash
+        function completeQuiz() {
+            quizCompleted = true;
+            
+            // To'g'ri javoblar sonini hisoblash
+            let correctAnswers = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === quizQuestions[index].answer) {
+                    correctAnswers++;
+                }
+            });
+            
+            // Natijani ko'rsatish
+            quizContent.style.display = 'none';
+            quizResult.style.display = 'block';
+            
+            let resultMessage = '';
+            const percentage = (correctAnswers / quizQuestions.length) * 100;
+            
+            if (percentage >= 80) {
+                resultMessage = `Siz ${quizQuestions.length} savoldan ${correctAnswers} tasiga to'g'ri javob berdingiz. Kompyuter savodxonligingiz juda yuqori darajada!`;
+            } else if (percentage >= 50) {
+                resultMessage = `Siz ${quizQuestions.length} savoldan ${correctAnswers} tasiga to'g'ri javob berdingiz. Kompyuter savodxonligingiz o'rta darajada.`;
+            } else {
+                resultMessage = `Siz ${quizQuestions.length} savoldan ${correctAnswers} tasiga to'g'ri javob berdingiz. Kompyuter savodxonligingizni oshirish uchun bizning kurslarimizdan foydalaning.`;
+            }
+            
+            resultText.textContent = resultMessage;
+        }
+        
+        // Tugmalarga hodisalar qo'shish
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', startQuiz);
+        
+        // Statistikani animatsiya qilish
+        function animateStats() {
+            const studentsCount = document.getElementById('students-count');
+            const coursesCount = document.getElementById('courses-count');
+            const regionsCount = document.getElementById('regions-count');
+            const successRate = document.getElementById('success-rate');
+            
+            animateValue(studentsCount, 0, 12500, 2000);
+            animateValue(coursesCount, 0, 24, 1500);
+            animateValue(regionsCount, 0, 14, 1000);
+            animateValue(successRate, 0, 92, 2500);
+        }
+        
+        // Raqamli animatsiya
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Modalni boshqarish
+        const contactBtn = document.getElementById('contact-btn');
+        const contactModal = document.getElementById('contact-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const contactForm = document.getElementById('contact-form');
+        
+        contactBtn.addEventListener('click', () => {
+            contactModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            contactModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Xabaringiz qabul qilindi! Tez orada siz bilan bog\'lanamiz.');
+            contactModal.style.display = 'none';
+            contactForm.reset();
+        });
+        
+        // Dasturni ishga tushirish
+        document.addEventListener('DOMContentLoaded', () => {
+            startQuiz();
+            animateStats();
+        });
+    </script>
+</body>
+</html>
